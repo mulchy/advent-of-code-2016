@@ -62,8 +62,9 @@
                       (:position (drive-taxi (parse-directions directions) initial-data))))
 
 
-(-> (slurp "input.txt")
-    ;; I didn't really look at the input format and forgot it had commas in it
-    (clojure.string/replace #"," "")
-    clojure.string/trim
-    calculate-distance)
+(comment
+  (-> (slurp "input.txt")
+      ;; I didn't really look at the input format and forgot it had commas in it
+      (clojure.string/replace #"," "")
+      clojure.string/trim
+      calculate-distance))
