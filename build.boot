@@ -8,6 +8,8 @@
 
 (require '[adzerk.boot-test :as boot-test])
 
+(deftask deps [])
+
 (deftask testing []
   (merge-env! :resource-paths #{"test"})
   identity)
