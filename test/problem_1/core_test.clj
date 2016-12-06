@@ -4,15 +4,14 @@
                                     rotate-left
                                     parse-string
                                     parse-directions
-                                    drive-taxi
-                                    initial-data]]
+                                    drive-taxi]]
             [clojure.test :refer [deftest testing is]]))
 
 (deftest calculate-distance-test
   (testing "Calculating the distance"
-    (is (= 5  (calculate-distance "R2 L3")))
-    (is (= 2  (calculate-distance "R2 R2 R2")))
-    (is (= 12 (calculate-distance "R5 L5 R5 R3")))))
+    (is (= 5  (calculate-distance "R2, L3")))
+    (is (= 2  (calculate-distance "R2, R2, R2")))
+    (is (= 12 (calculate-distance "R5, L5, R5, R3")))))
 
 (deftest rotate-right-test
   (is (= [1 0] (rotate-right [0 1])))
@@ -35,9 +34,9 @@
 (deftest parse-directions-test
   (is (=
        [(parse-string "R2") (parse-string "L2")]
-       (parse-directions "R2 L2"))))
+       (parse-directions "R2, L2"))))
 
 (deftest drive-taxi-test
   (is (=
-       {:position [2 2] :direction [0 1]}
-       (drive-taxi (parse-directions "R2 L2") initial-data))))
+       {:position [2 2] :direction [0 1] :visited #{[0 0] [1 0] [2 0] [2 1] [2 2]}}
+       (drive-taxi (parse-directions "R2, L2")))))
