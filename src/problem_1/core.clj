@@ -74,4 +74,4 @@
   (manhattan-distance (:position initial-data)
                       (:position (drive-taxi (parse-directions directions) initial-data))))
 
-;(calculate-distance (slurp "input.txt"))
+;(calculate-distance (slurp "input/problem1.txt"))

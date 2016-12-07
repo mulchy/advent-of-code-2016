@@ -144,4 +144,4 @@
                [])
        (apply str)))
 
-;(calculate-code (slurp "input.txt"))
+;(calculate-code (slurp "input/problem2.txt"))
