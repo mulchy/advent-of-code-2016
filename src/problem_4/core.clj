@@ -12,7 +12,7 @@
   [input]
   (->> input
        split-lines
-       (map parse-line)))
+       (map (juxt identity parse-line))))
 
 (defn top-five
   [coll]
@@ -26,10 +26,29 @@
   (= (join (top-five letters))
      checksum))
 
+(defn rot-n [n character]
+  (if (= \- character)
+    " "
+    (str (nth (drop-while #(neg? (compare % character))
+                          (cycle "abcdefghijklmnopqrstuvwxyz"))
+              n))))
+
+(defn drop-checksum-and-sector-id
+  [string]
+  (re-find #"\D+(?=-)" string))
+
 (->> (slurp "input/problem4.txt")
      parse-input
-     (filter real?)
-     (reduce (fn [acc [_ sector-id _]]
-               (+ acc
-                  (Integer/valueOf sector-id)))
-             0))
+     (filter (fn [[_ parsed]]
+               (real? parsed)))
+     (map (fn [[original [_ sector-id _]]]
+            (let [n (Integer/valueOf sector-id)]
+              (vector (->> original
+                           drop-checksum-and-sector-id
+                           (map #(rot-n n %))
+                           (apply str))
+                      sector-id))))
+     (filter (fn [[name _]]
+               (= "northpole object storage" name)))
+     first
+     second)
