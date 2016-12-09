@@ -2,7 +2,7 @@
  :resource-paths #{"src"}
  :dependencies   '[[org.clojure/clojure        "1.9.0-alpha14"]
                    [org.clojure/core.async     "0.2.395"]
-
+                   [digest                     "1.4.5"]
                    ;dev
                    [adzerk/boot-test           "1.1.2"          :scope "test"]])
 
