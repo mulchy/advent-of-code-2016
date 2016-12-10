@@ -3,7 +3,7 @@
             [clojure.test :refer [deftest is]]))
 
 (deftest error-correct-test
-  (is (= "easter"
+  (is (= "advent"
          (error-correct ["eedadn"
                          "drvtee"
                          "eandsr"

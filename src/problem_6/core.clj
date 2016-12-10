@@ -11,7 +11,7 @@
                          input)]
     (->> chars
          (map frequencies)
-         (map #(sort-by (comp - val) %))
+         (map #(sort-by val %))
          (map first)
          (map key)
          join)))
