@@ -1,20 +1,19 @@
 (ns problem-6.core
   (:require [clojure.string :refer [split-lines join split]]))
 
+;; again, this function is super useful
+(defn transpose [matrix]
+  (apply map vector matrix))
+
 (defn error-correct
   [lines]
-  (let [n     (count (first lines))
-        input (split (join lines) #"")
-        chars (reduce-kv (fn [acc index val]
-                           (update acc (mod index n) #(conj % val)))
-                         []
-                         input)]
-    (->> chars
-         (map frequencies)
-         (map #(sort-by val %))
-         (map first)
-         (map key)
-         join)))
+  (->> lines
+       transpose
+       (map frequencies)
+       (map #(sort-by val %))
+       (map first)
+       (map key)
+       join))
 
 (->> (slurp "input/problem6.txt")
      split-lines
