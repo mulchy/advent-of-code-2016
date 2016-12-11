@@ -9,26 +9,56 @@
                  (and (= a d)
                       (= b c)
                       (not= a b))))
-       ((comp not empty?))))
+       ((complement empty?))))
 
 (defn supports-tls?
-  [{:keys [regular-sequences hypernet-sequences]}]
-  (and (not (empty? (filter abba? regular-sequences)))
-       (empty? (filter abba? hypernet-sequences))))
+  [{:keys [supernet-sequences hypernet-sequences]}]
+  (and ((complement not-any?) abba? supernet-sequences)
+       (not-any? abba? hypernet-sequences)))
 
 (defn split-brackets
   [string]
   (reduce-kv (fn [acc index val]
                (update acc (if (even? index)
-                             :regular-sequences
+                             :supernet-sequences
                              :hypernet-sequences)
                        conj val))
              {:hypernet-sequences []
-              :regular-sequences  []}
+              :supernet-sequences  []}
              (split string #"[\[|\]]")))
+
+(defn- aba
+  [string]
+  (->> string
+       (partition 3 1)
+       (filter (fn [[first middle last]]
+                 (and (= first last)
+                      (not= first middle))))))
+
+(defn- bab? [[a b _] string]
+  (->> string
+       (partition 3 1)
+       (filter (fn [[first middle last]]
+                 (and (= first last)
+                      (not= first middle)
+                      (= b first)
+                      (= a middle))))
+       ((complement empty?))))
+
+(defn supports-ssl?
+  [string]
+  (let [split-string (split-brackets string)
+        abas         (->> split-string
+                          :supernet-sequences
+                          (map aba)
+                          (filter (complement empty?))
+                          (apply concat))
+        babs         (:hypernet-sequences split-string)]
+    ((complement not-any?) true? (for [x abas
+                                       y babs]
+                                   (bab? x y)))))
 
 (->> (slurp "input/problem7.txt")
      split-lines
-     (map split-brackets)
-     (filter supports-tls?)
+     (filter supports-ssl?)
      count)
