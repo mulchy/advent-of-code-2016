@@ -46,10 +46,14 @@
     (starts-with? line "rotate column")
     (apply rotate-column display (map #(Integer/valueOf %) (re-seq #"[0-9]+" line)))))
 
-(->> (slurp "input/problem8.txt")
-     split-lines
-     (reduce parse-line-and-draw
-             (display 6 50))
-     flatten
-     (filter true?)
-     count)
+(println (->> (slurp "input/problem8.txt")
+              split-lines
+              (reduce parse-line-and-draw
+                      (display 6 50))
+              (map (fn [list]
+                     (map #(if (true? %)
+                             "λ"
+                             " ")
+                          list)))
+              (map #(join %))
+              (join "\n")))
