@@ -1,5 +1,5 @@
 (ns advent-of-code.problem-8-test
-  (:require [advent-of-code.problem-8 :refer [rect display rotate-column rotate-row parse-line]]
+  (:require [advent-of-code.problem-8 :refer [rect display rotate-column rotate-row]]
             [clojure.test :refer [deftest is]]))
 
 (def test-display (display 3 7))

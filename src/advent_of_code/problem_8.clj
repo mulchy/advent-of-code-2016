@@ -1,6 +1,5 @@
 (ns advent-of-code.problem-8
-  (:require [clojure.string :refer [starts-with? split-lines]]
-            ))
+  (:require [clojure.string :refer [starts-with? split-lines join]]))
 
 (defn display
   [rows columns]
