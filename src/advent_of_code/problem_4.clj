@@ -1,4 +1,4 @@
-(ns problem-4.core
+(ns advent-of-code.problem-4
   (:require [clojure.string :refer [join split split-lines trim]]))
 
 (defn parse-line

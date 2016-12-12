@@ -1,5 +1,5 @@
-(ns problem-6.core-test
-  (:require [problem-6.core :refer [error-correct]]
+(ns advent-of-code.problem-6-test
+  (:require [advent-of-code.problem-6 :refer [error-correct]]
             [clojure.test :refer [deftest is]]))
 
 (deftest error-correct-test

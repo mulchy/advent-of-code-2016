@@ -1,4 +1,4 @@
-(ns problem-6.core
+(ns advent-of-code.problem-6
   (:require [clojure.string :refer [split-lines join split]]))
 
 ;; again, this function is super useful

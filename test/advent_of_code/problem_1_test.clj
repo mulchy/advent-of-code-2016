@@ -1,5 +1,5 @@
-(ns problem-1.core-test
-  (:require [problem-1.core :refer [calculate-distance
+(ns advent-of-code.problem-1-test
+  (:require [advent-of-code.problem-1 :refer [calculate-distance
                                     rotate-right
                                     rotate-left
                                     parse-string

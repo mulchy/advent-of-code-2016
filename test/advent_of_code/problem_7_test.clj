@@ -1,5 +1,5 @@
-(ns problem-7.core-test
-  (:require [problem-7.core :refer [supports-tls? abba? split-brackets supports-ssl?]]
+(ns advent-of-code.problem-7-test
+  (:require [advent-of-code.problem-7 :refer [supports-tls? abba? split-brackets supports-ssl?]]
             [clojure.test :refer [deftest is]]))
 
 (deftest supports-tls?-test

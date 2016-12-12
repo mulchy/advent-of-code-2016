@@ -1,4 +1,4 @@
-(ns problem-3.core
+(ns advent-of-code.problem-3
   (:require [clojure.string :refer [split split-lines trim]]))
 
 (defn parse-input

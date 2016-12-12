@@ -1,4 +1,4 @@
-(ns problem-5.core
+(ns advent-of-code.problem-5
   (:require [digest :refer [md5]]
             [clojure.string :refer [join starts-with?]]))
 

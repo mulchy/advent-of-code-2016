@@ -1,4 +1,4 @@
-(ns problem-1.core)
+(ns advent-of-code.problem-1)
 
 (def initial-data
   {:position [0 0]

@@ -1,5 +1,5 @@
-(ns problem-2.core-test
-  (:require [problem-2.core :refer [move calculate-code]]
+(ns advent-of-code.problem-2-test
+  (:require [advent-of-code.problem-2 :refer [move calculate-code]]
             [clojure.test :refer [deftest testing is]]))
 
 (deftest move-test

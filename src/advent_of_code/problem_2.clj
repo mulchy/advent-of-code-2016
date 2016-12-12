@@ -1,4 +1,4 @@
-(ns problem-2.core)
+(ns advent-of-code.problem-2)
 
 ;; part 1
 

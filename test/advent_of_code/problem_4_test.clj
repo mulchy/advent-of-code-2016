@@ -1,5 +1,5 @@
-(ns problem-4.core-test
-  (:require [problem-4.core :refer [real? parse-line top-five rot-n]]
+(ns advent-of-code.problem-4-test
+  (:require [advent-of-code.problem-4 :refer [real? parse-line top-five rot-n]]
             [clojure.test :refer [deftest is]]))
 
 (deftest parse-line-test

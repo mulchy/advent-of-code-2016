@@ -1,5 +1,5 @@
-(ns problem-5.core-test
-  (:require [problem-5.core :refer [collect-password]]
+(ns advent-of-code.problem-5-test
+  (:require [advent-of-code.problem-5 :refer [collect-password]]
             [clojure.test :refer [deftest is]]))
 
 (deftest collect-password-test

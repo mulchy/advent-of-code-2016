@@ -1,5 +1,5 @@
-(ns problem-3.core-test
-  (:require [problem-3.core :refer [triangle? reorder-triple reorder-list transpose]]
+(ns advent-of-code.problem-3-test
+  (:require [advent-of-code.problem-3 :refer [triangle? reorder-triple reorder-list transpose]]
             [clojure.test :refer [deftest testing is]]))
 
 (deftest triangle?-test

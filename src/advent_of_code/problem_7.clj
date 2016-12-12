@@ -1,4 +1,4 @@
-(ns problem-7.core
+(ns advent-of-code.problem-7
   (:require [clojure.string :refer [split split-lines]]))
 
 (defn abba?
