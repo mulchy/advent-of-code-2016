@@ -19,6 +19,10 @@
   (>= program-counter
      (count program)))
 
+(defn int-or-nil [char]
+  (try (Integer/valueOf (str char))
+       (catch Exception e nil)))
+
 (defn copy [computer x y]
     (-> computer
         (assoc-in [:registers y] (or (int-or-nil x)
@@ -34,10 +38,6 @@
   (-> computer
       (update-in [:registers x] dec)
       (update :program-counter inc)))
-
-(defn int-or-nil [char]
-  (try (Integer/valueOf (str char))
-       (catch Exception e nil)))
 
 (defn jump-unless-zero [computer x y]
   (if (zero? (or (int-or-nil x)
