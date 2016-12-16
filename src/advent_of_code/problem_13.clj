@@ -5,29 +5,26 @@
 (defn polynomial [x y]
   (+ (* x x) (* 3 x) (* 2 x y) y (* y y)))
 
-(def constant 1352)
-
 (defn hamming-weight [num]
   (Long/bitCount num))
 
-(defn open? [[x y]]
+(defn open? [[x y] constant]
   (-> (polynomial x y)
       (+ constant)
       hamming-weight
       even?))
 
 (defn display
-  [rows columns]
+  [rows columns constant]
   (->> (vec (repeat rows (mapv (constantly nil) (range columns))))
        (map-indexed (fn [y row]
                       (map-indexed (fn [x _]
-                                     (if (open? [x y])
+                                     (if (open? [x y] constant)
                                        "."
                                        "#"))
                                    row)))
        (map join)
        (join \newline)))
-
 
 (defn adjacent-rooms [[x y]]
   (filter (partial not-any? neg?)
@@ -36,7 +33,7 @@
            [(dec x) y]
            [x (dec y)]]))
 
-(defn escape [x y]
+(defn escape [[x y] constant]
   (loop [moves   [[x y]]
          visited #{}
          steps   0]
@@ -44,13 +41,29 @@
                        (map adjacent-rooms)
                        (apply concat)
                        distinct
-                       (filter open?)
+                       (filter #(open? % constant))
                        (filter #(not (contains? visited %))))
           visited (into visited moves)
           steps   (inc steps)]
-      (println "Taken " steps "steps, now checking " (count moves) " possible moves")
       (if (some #{[1 1]} moves)
         steps
         (recur moves visited steps)))))
 
-(escape 31,39)
+(defn walk-n [[x y] n constant]
+  (loop [moves   [[x y]]
+         visited #{}
+         steps   0]
+    (let [moves   (->> moves
+                       (map adjacent-rooms)
+                       (apply concat)
+                       distinct
+                       (filter #(open? % constant))
+                       (filter #(not (contains? visited %))))
+          visited (into visited moves)
+          steps   (inc steps)]
+      (if (= n steps)
+        visited
+        (recur moves visited steps)))))
+
+(escape [31 39] 1352)
+(count (walk-n [1 1] 50 1352))

@@ -1,8 +1,6 @@
 (ns advent-of-code.problem-13-test
-  (:require [advent-of-code.problem-13 :refer [hamming-weight display adjacent-rooms constant escape]]
+  (:require [advent-of-code.problem-13 :refer [hamming-weight display adjacent-rooms escape]]
             [clojure.test :refer [deftest is]]))
-
-(alter-var-root #'constant (constantly 10))
 
 (deftest hamming-weight-test
   (is (= 3
@@ -22,7 +20,7 @@
 .##..#..#.
 ..##....#.
 #...##.###"
-         (display 7 10))))
+         (display 7 10 10))))
 
 (deftest adjacent-rooms-test
   (is (= #{[1 0] [0 1]}
@@ -31,4 +29,4 @@
          (set (adjacent-rooms [0 3])))))
 
 (deftest escape-test
-  (is (= 11 (escape 7 4))))
+  (is (= 11 (escape [7 4] 10))))
