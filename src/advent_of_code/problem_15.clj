@@ -43,5 +43,6 @@ represented by [a n]"
 (->> (slurp "input/problem15.txt")
      split-lines
      (map parse)
+     (#(conj % [-7 11])) ;; part 2
      transpose
      (apply chinese-remainder-theorem))
