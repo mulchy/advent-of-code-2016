@@ -1,4 +1,5 @@
-(ns advent-of-code.problem-11)
+(ns advent-of-code.problem-11
+  (:require [advent-of-code.util :refer [transpose]]))
 
 (def state
   {:elevator   0
@@ -42,9 +43,6 @@
 (defn chip-gen-compare [[chip1 gen1] [chip2 gen2]]
   (or (compare chip1 chip2)
       (compare gen1  gen2)))
-
-(defn transpose [matrix]
-  (apply mapv vector matrix))
 
 (defn canonicalize [{:keys [chips generators] :as state}]
   "Sorts the chip and generator order to produce a cannonical form to reduce the number of branches to search"
