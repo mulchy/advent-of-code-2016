@@ -2,6 +2,18 @@
   (:require [advent-of-code.util :refer [transpose]]
             [clojure.string :refer [split-lines]]))
 
+(defn extended-euclidean-algorithm [a b]
+  (loop [s 0  old-s 1
+         t 1  old-t 0
+         r b  old-r a]
+    (if (= 0 r)
+      [old-r old-s old-t]
+      (let [quotient    (quot old-r r)
+            [old-r r]   [r (- old-r (* quotient r))]
+            [old-s s]   [s (- old-s (* quotient s))]
+            [old-t t]   [t (- old-t (* quotient t))]]
+        (recur s old-s t old-t r old-r)))))
+
 (defn chinese-remainder-theorem [as ns]
   "Solves a system of modular congrunces of the form
 
@@ -19,18 +31,6 @@ where each n is pairwise coprime."
                   0
                   (map vector as ns))
          product)))
-
-(defn extended-euclidean-algorithm [a b]
-  (loop [s 0  old-s 1
-         t 1  old-t 0
-         r b  old-r a]
-    (if (= 0 r)
-      [old-r old-s old-t]
-      (let [quotient    (quot old-r r)
-            [old-r r]   [r (- old-r (* quotient r))]
-            [old-s s]   [s (- old-s (* quotient s))]
-            [old-t t]   [t (- old-t (* quotient t))]]
-        (recur s old-s t old-t r old-r)))))
 
 (defn parse [string]
   "Takes a description of a gear and converts it into a modular congruence
