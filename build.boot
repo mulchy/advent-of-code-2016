@@ -4,7 +4,8 @@
                    ;[org.clojure/core.async     "0.2.395"]
                    [digest                     "1.4.5"]
                    ;dev
-                   [adzerk/boot-test           "1.1.2"          :scope "test"]])
+                   [adzerk/boot-test           "1.1.2"          :scope "test"]
+                   [org.clojure/test.check     "0.9.0"          :scope "test"]])
 
 (require '[adzerk.boot-test :as boot-test])
 
