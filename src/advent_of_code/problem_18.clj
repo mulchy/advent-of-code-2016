@@ -86,7 +86,10 @@
         :args (s/cat :input ::input)
         :ret ::input)
 
-(s/def ::input-and-number (s/cat :input ::input :n pos-int?))
+(s/def ::input-and-number
+  (s/with-gen (s/cat :input ::input :n pos-int?)
+    #(gen/tuple (s/gen ::input)
+                (s/gen (s/int-in 0 40)))))
 (s/fdef create-n-rows
         :args ::input-and-number
         :ret  (s/coll-of ::input)

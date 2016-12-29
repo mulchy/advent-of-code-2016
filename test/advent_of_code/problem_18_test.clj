@@ -1,7 +1,9 @@
 (ns advent-of-code.problem-18-test
-  (:require [advent-of-code.problem-18 :refer [input->row next-row next-input number-of-safe-tiles puzzle-input]]
+  (:require [advent-of-code.problem-18 :refer [input->row next-row next-input number-of-safe-tiles puzzle-input create-n-rows]]
             [clojure.test :refer [deftest is]]
-            [clojure.spec.test :as stest]))
+            [clojure.spec.test :as stest]
+            ; fix weird emacs bug
+            [clojure.test.check :as tcheck]))
 
 (defn specs-valid?
   "Runs test.check on given symbol and returns true if all checks passed"
@@ -16,10 +18,7 @@
   (is (specs-valid? `input->row))
   (is (specs-valid? `next-row))
   (is (specs-valid? `next-input))
-
-  ;; this test takes 5ever with large values of n
-  ;(is (specs-valid? `create-n-rows))
-  )
+  (is (specs-valid? `create-n-rows)))
 
 (deftest next-input-test
   (is (= ".^^^^"
